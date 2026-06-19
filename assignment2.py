@@ -5,13 +5,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 
-# Load Data
 df = pd.read_csv("customer_data.csv")
 
 X = df.drop('Target', axis=1)
 y = df['Target']
 
-# Split Dataset
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -19,20 +17,16 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 
-# Train Model
 model = RandomForestClassifier()
 
 model.fit(X_train, y_train)
 
-# Prediction
 y_pred = model.predict(X_test)
 
-# Accuracy
 accuracy = accuracy_score(y_test, y_pred)
 
 print("Accuracy:", accuracy)
 
-# Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
 
 print(cm)
